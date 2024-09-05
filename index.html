@@ -29,22 +29,22 @@
     console.log("hello");
     function addTask() {
       const parentEL = document.getElementById("todo-list");
-      const inputEl = document.getElementById("taskInput"); 
+      const inputEl = document.getElementById("taskInput");
       // getting the value of the input field , parent element of the input field
       const taskToAdd = inputEl.value;
       // getting the value of the input field
       const taskEl = document.createElement("div");
       // creating a new div element
-      taskEl.id="task-"+count;
+      taskEl.id = "task-" + count;
       // setting the id of the new div element
-      taskEl.innerHTML = "<div>"+count+"." + taskToAdd +"</div><button onclick='deleteTask("+count+")' class='bg-red-500 text-white px-3 py-1 rounded-md mt-2'>delete</button>";
+      taskEl.innerHTML = "<div>" + count + "." + taskToAdd + "</div><button onclick='deleteTask(" + count + ")' class='bg-red-500 text-white px-3 py-1 rounded-md mt-2'>delete</button>";
       // setting the innerHTML of the new div element
       count++;
       parentEL.appendChild(taskEl);
 
     }
     function deleteTask(count) {
-      const taskToDelete=document.getElementById("task-"+count);
+      const taskToDelete = document.getElementById("task-" + count);
       // selecting the task to delete
       taskToDelete.parentNode.removeChild(taskToDelete);
       // selecting the task then its parent node and then asking it to remove child then putting the task as the thing to be delted
