@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="stylesheet" href="style.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TODO </title>
+</head>
+
+<body class="bg-gray-500">
+  <div class="container m-10 ">
+    <div id="todo">
+      <h1 id="title" class="text-4xl underline decoration-red-500 text-slate-00 ">TODO</h1>
+      <div id="todo-list">
+
+      </div>
+    </div>
+    <input type="text" id="taskInput"
+      class="border-2 border-blue-300 rounded-md p-1 mt-2 focus:outline-none focus:border-cyan-700"
+      placeholder="ADD TODO">
+
+    <button id="addTaskbtn" onclick="addTask()" class="bg-blue-500 text-white px-3 py-1 rounded-md mt-2">Add
+      Task</button>
+  </div>
+  <script>
+    let count = 1;
+    // putting the count variable in the global scope so that it can be accessed by the addTask function as well as the deleteTask function , it helps us in putting id
+    console.log("hello");
+    function addTask() {
+      const parentEL = document.getElementById("todo-list");
+      const inputEl = document.getElementById("taskInput");
+      // getting the value of the input field , parent element of the input field
+      const taskToAdd = inputEl.value;
+      // getting the value of the input field
+      const taskEl = document.createElement("div");
+      // creating a new div element
+      taskEl.id = "task-" + count;
+      // setting the id of the new div element
+      taskEl.innerHTML = "<div>" + count + "." + taskToAdd + "</div><button onclick='deleteTask(" + count + ")' class='bg-red-500 text-white px-2 py-1 rounded-md mt-2'>delete</button>";
+      // setting the innerHTML of the new div element
+      count++;
+      parentEL.appendChild(taskEl);
+
+
+    }
+    function deleteTask(count) {
+      const taskToDelete = document.getElementById("task-" + count);
+      // selecting the task to delete
+      taskToDelete.parentNode.removeChild(taskToDelete);
+      // selecting the task then its parent node and then asking it to remove child then putting the task as the thing to be delted
+    }
+  </script>
+</body>
+
+</html>

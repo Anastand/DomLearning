@@ -8,46 +8,37 @@
   <title>TODO </title>
 </head>
 
-<body>
-  <div class="container m-10 ">
-    <div id="todo">
-      <h1 id="title" class="text-4xl underline decoration-red-500 text-slate-00 ">TODO</h1>
-      <div id="todo-list">
+<body class="bg-gray-500">
+  <!-- writting a todo application by myself -->
+  <div class="container mx-auto m-10">
+    <div id="todo-container" class="text-3xl font-bold underline underline-offset-4 decoration-red-400">TO-DO</div>
+    <div id="todo-list">
 
-      </div>
     </div>
-    <input type="text" id="taskInput"
-      class="border-2 border-blue-300 rounded-md p-1 mt-2 focus:outline-none focus:border-cyan-700"
+    <input type="text" id="inputBox"
+      class="bg-slate-200 text-green-600 border-2 border-blue-300 rounded-md p-1 mt-2 focus:outline-none focus:border-cyan-700"
       placeholder="ADD TODO">
 
-    <button id="addTaskbtn" onclick="addTask()" class="bg-blue-500 text-white px-3 py-1 rounded-md mt-2">Add
+    <button id="addTaskbtn" onclick="addTask()" class="bg-blue-600 text-gray-200 px-4 py-1.5 rounded-md mt-2">Add
       Task</button>
   </div>
   <script>
     let count = 1;
-    // putting the count variable in the global scope so that it can be accessed by the addTask function as well as the deleteTask function , it helps us in putting id
-    console.log("hello");
     function addTask() {
-      const parentEL = document.getElementById("todo-list");
-      const inputEl = document.getElementById("taskInput");
-      // getting the value of the input field , parent element of the input field
-      const taskToAdd = inputEl.value;
-      // getting the value of the input field
-      const taskEl = document.createElement("div");
-      // creating a new div element
-      taskEl.id = "task-" + count;
-      // setting the id of the new div element
-      taskEl.innerHTML = "<div>" + count + "." + taskToAdd + "</div><button onclick='deleteTask(" + count + ")' class='bg-red-500 text-white px-3 py-1 rounded-md mt-2'>delete</button>";
-      // setting the innerHTML of the new div element
-      count++;
-      parentEL.appendChild(taskEl);
+    const inputEL=document.getElementById("inputBox");
+    const taskToAdd=inputEL.value;
+    const todoList=document.getElementById("todo-list");
+    const newTask = document.createElement("div");
+    
+    newTask.id="task-"+count;
 
+    newTask.innerHTML = "<div>" + count + "." + taskToAdd + "</div><button onclick='deleteTask(" + count + ")' class='bg-red-500 text-white px-2 py-1 rounded-md mt-2'>delete</button>";
+    todoList.appendChild(newTask);
+    count++;
     }
-    function deleteTask(count) {
-      const taskToDelete = document.getElementById("task-" + count);
-      // selecting the task to delete
-      taskToDelete.parentNode.removeChild(taskToDelete);
-      // selecting the task then its parent node and then asking it to remove child then putting the task as the thing to be delted
+    function deleteTask(count){
+      const taskToDelete=document.getElementById("task-"+count);
+      taskToDelete.parentElement.removeChild(taskToDelete);
     }
   </script>
 </body>
